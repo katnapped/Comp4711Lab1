@@ -14,10 +14,10 @@
 class Student {
     
     /* Constructor */
-    function __construct()
+    function __construct($surname, $first_name)
     {
-        $this->surname = '';
-        $this->first_name = '';
+        $this->surname = $surname;
+        $this->first_name = $first_name;
         $this->email = array();
         $this->grades = array();
     }
@@ -25,11 +25,20 @@ class Student {
     /* Add to array of emails */
     function add_email($which, $address) {
         $this->emails[$which] = $address;
-    }
+    } 
     
     /* Add to array of grades */
     function add_grade($grade) {
         $this->grades[] = $grade;
+    }
+    
+    /* Add an array of grades */
+    function add_grades($grades)
+    {
+        foreach($grades as $grade)
+        {
+            $this->grades[] = $grade;
+        }
     }
     
     /* Calculate grades average */
@@ -46,7 +55,7 @@ class Student {
     /* Represent as text */
     function toString()
     {
-        $result = $this->first_name . ''.
+        $result = $this->first_name . ' '.
         $this->surname;
         $result .= ' ('.$this->average().")\n";
         foreach($this->emails as $which=>$what)
@@ -57,4 +66,5 @@ class Student {
         $result .= "\n";
         return '<pre>'.$result.'</pre>';
     }
+    
 }
